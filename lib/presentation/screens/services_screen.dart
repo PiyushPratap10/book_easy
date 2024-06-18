@@ -22,16 +22,22 @@ class _ServicesScreenState extends State<ServicesScreen> {
           style: TextStyle(color: yellowColor),
         ),
       ),
-      body: GridView.builder(
-          padding: const EdgeInsets.all(14),
-          itemCount: 9,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              mainAxisSpacing: 22, crossAxisSpacing: 14, crossAxisCount: 3),
-          itemBuilder: (context, index) {
-            String cat = categories[index];
-            String logo = categoryLogos[cat]!;
-            return ServiceCard(title: cat, logoPath: logo);
-          }),
+      body: SafeArea(
+        child: GridView.builder(
+            padding: const EdgeInsets.all(14),
+            itemCount: 9,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 22, crossAxisSpacing: 14, crossAxisCount: 3),
+            itemBuilder: (context, index) {
+              String cat = categories[index];
+              String logo = categoryLogos[cat]!;
+              return ServiceCard(
+                title: cat,
+                logoPath: logo,
+                category: cat,
+              );
+            }),
+      ),
     );
   }
 }

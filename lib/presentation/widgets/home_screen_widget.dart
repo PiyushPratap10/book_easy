@@ -2,6 +2,8 @@ import 'package:bookeasy/data/provider_model.dart';
 import 'package:bookeasy/data/providers/list_provider.dart';
 import 'package:bookeasy/presentation/constants/categories.dart';
 import 'package:bookeasy/presentation/constants/colors.dart';
+import 'package:bookeasy/presentation/screens/profiles/service_for_customer.dart';
+import 'package:bookeasy/presentation/screens/services_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -205,7 +207,13 @@ class BookingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (ctx) =>
+                    ServiceProviderScreenForCustomer(provider: provider)));
+      },
       child: Container(
         width: 84,
         height: 25,
@@ -385,20 +393,29 @@ class ServiceProviderCard extends StatelessWidget {
 }
 
 class ServiceCard extends StatelessWidget {
-  const ServiceCard({super.key, required this.title, required this.logoPath});
+  const ServiceCard(
+      {super.key,
+      required this.title,
+      required this.logoPath,
+      required this.category});
   final String title;
   final String logoPath;
+  final String category;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ServicesListScreen(category: category)));
+      },
       child: Container(
         height: 102,
         width: 102,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(9.71),
-          color: Colors.white
-        ),
+            borderRadius: BorderRadius.circular(9.71), color: Colors.white),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -406,15 +423,19 @@ class ServiceCard extends StatelessWidget {
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                image: DecorationImage(fit: BoxFit.cover,image: AssetImage(logoPath))
-              ),
+                  image: DecorationImage(
+                      fit: BoxFit.cover, image: AssetImage(logoPath))),
             ),
-            const SizedBox(height: 12,),
-            Text(title,style: const TextStyle(fontSize: 11.65),)
+            const SizedBox(
+              height: 12,
+            ),
+            Text(
+              title,
+              style: const TextStyle(fontSize: 11.65),
+            )
           ],
         ),
       ),
     );
   }
 }
-

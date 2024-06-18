@@ -60,3 +60,21 @@ class BackNavigationButton extends StatelessWidget {
     );
   }
 }
+
+class CircularMaroonButton extends StatelessWidget {
+  const CircularMaroonButton({super.key, required this.icon});
+  final Icon icon;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+
+      },
+      child: CircleAvatar(
+        backgroundColor: maroonoColor,
+        radius: 26,
+        child: Center(child: icon),
+      ),
+    );
+  }
+}
